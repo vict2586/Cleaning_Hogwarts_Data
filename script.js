@@ -51,11 +51,23 @@ function ShowStudents(jsonObject) {
       const lastSpace = student.fullname.trim().lastIndexOf(" ");
 
       students.firstname = student.fullname.substring(0, firstSpace).trim();
+
       students.middlename = student.fullname.substring(firstSpace, lastSpace).trim();
-      students.lastname = student.fullname.substring(lastSpace).trim();
       students.nickname = student.fullname.substring(firstSpace, lastSpace).trim();
+
+      if (students.middlename.substring(0,1) == `"`) {
+        students.nickname = students.middlename;
+        students.middlename = "";
+      } else {
+        students.nickname = "";
+      }
+
+      students.lastname = student.fullname.substring(lastSpace).trim();
+
       students.gender = student.gender;
+
       students.img = student["none"];
+
       students.house = student.house;
 
       console.log(students);
